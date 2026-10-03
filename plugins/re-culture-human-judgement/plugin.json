@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "re-culture-human-judgement",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Re Culture™ Human Judgement Review For Individuals, Teams, And Institutions Using AI. مراجعة للحكم البشري لدى ري كلتشر™ للأفراد والفرق والمؤسسات.",
   "author": {
     "name": "Mazhar Ul Haq"
@@ -32,7 +32,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Initial Bilingual Human Judgement Review For Individuals, Teams, And Institutions Using AI.",
+        "release_notes": "Refined English And Arabic Human Experience Writing Guidance With Evidence-Bounded Examples And Clearer Privacy Language.",
         "translations": {
           "ar-SA": {
             "subtitle": "الذكاء الاصطناعي والحكم البشري",
