@@ -1,0 +1,45 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "re-culture-human-judgement",
+  "version": "0.1.0",
+  "description": "A Re Culture™ Human Judgement Review For Individuals, Teams, And Institutions Using AI. مراجعة للحكم البشري لدى ري كلتشر™ للأفراد والفرق والمؤسسات.",
+  "author": {
+    "name": "Mazhar Ul Haq"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Re Culture™ | ري كلتشر™",
+        "shortDescription": "Human Judgement | الحكم البشري",
+        "longDescription": "When AI Enters A Decision, Re Culture™ Helps People See The Human Experience That Could Be Missed. Individuals, Teams, Enterprises, And Public Institutions Can Use A Structured Review To Clarify Purpose, Human Authority, Evidence, Privacy, Fairness, And The Right To Pause. The Plugin Produces A Reviewable Record With Observed Facts, Assumptions, Missing Evidence, And A Named Human Decision Point. It Does Not Approve, Certify, Publish, Or Make A Decision For A Person Or Institution. Its First Release Uses Only Information A User Chooses To Provide In The Conversation; It Has No Connection To An Organization's Internal Systems Or A Re Culture™ Data Endpoint.\n\nحين يدخل الذكاء الاصطناعي في قرار، قد تختفي من النتيجة تجربة الشخص الذي سيتأثر به. تساعد ري كلتشر™ الأفراد والفرق والمؤسسات والجهات العامة على فحص الغاية من الاستخدام، وصلاحية الإنسان المسؤول، وحدود الأدلة والبيانات، والكرامة والإنصاف، وحق التوقف والعودة إلى المراجعة البشرية. تعرض الإضافة ما لوحظ، وما أفاد به المستخدم، وما استنتج، وما بقي دون تحقق، ثم تعيد القرار إلى صاحبه البشري. لا تمنح موافقة مؤسسية، ولا شهادة امتثال، ولا تتخذ القرار نيابة عن الإنسان. تعتمد هذه النسخة على ما يختار المستخدم تقديمه في المحادثة، ولا تتصل بأنظمة المؤسسة الداخلية.",
+        "developerName": "Mazhar Ul Haq",
+        "category": "Productivity",
+        "logo": "./assets/re-culture-official-mark.png",
+        "composerIcon": "./assets/re-culture-official-mark.png",
+        "defaultPrompt": [
+          "Review My Use Of AI Through Re Culture™ Human Judgement.",
+          "Prepare A Human Review Record For Our Team Or Institution's AI Use.",
+          "راجع استخدامي للذكاء الاصطناعي عبر الحكم البشري لدى ري كلتشر™."
+        ],
+        "websiteURL": "https://re-culture-plugin-pages.pages.dev/",
+        "supportURL": "https://re-culture-plugin-pages.pages.dev/support.en.html",
+        "privacyPolicyURL": "https://re-culture-plugin-pages.pages.dev/privacy.en.html",
+        "termsOfServiceURL": "https://re-culture-plugin-pages.pages.dev/terms.en.html"
+      },
+      "review": {
+        "commerce": false,
+        "commerce_description": "This Skills-Only Plugin Does Not Sell Products Or Process Payments."
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Initial Bilingual Human Judgement Review For Individuals, Teams, And Institutions Using AI.",
+        "translations": {
+          "ar-SA": {
+            "subtitle": "الذكاء الاصطناعي والحكم البشري",
+            "description": "حين يدخل الذكاء الاصطناعي في قرار، قد تختفي من النتيجة تجربة الشخص الذي سيتأثر به. تساعد ري كلتشر™ الأفراد والفرق والمؤسسات والجهات العامة على فحص الغاية من الاستخدام، وصلاحية الإنسان المسؤول، وحدود الأدلة والبيانات، والكرامة والإنصاف، وحق التوقف والعودة إلى المراجعة البشرية. تعرض الإضافة ما لوحظ، وما أفاد به المستخدم، وما استنتج، وما بقي دون تحقق، ثم تعيد القرار إلى صاحبه البشري. لا تمنح موافقة مؤسسية، ولا شهادة امتثال، ولا تتخذ القرار نيابة عن الإنسان. تعتمد هذه النسخة على ما يختار المستخدم تقديمه في المحادثة، ولا تتصل بأنظمة المؤسسة الداخلية."
+          }
+        }
+      }
+    }
+  }
+}

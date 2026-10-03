@@ -1,0 +1,20 @@
+{
+  "name": "re-culture-public",
+  "plugins": [
+    {
+      "name": "re-culture-human-judgement",
+      "source": {
+        "source": "local",
+        "path": "./plugins/re-culture-human-judgement"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity",
+      "interface": {
+        "displayName": "Re Culture™ | ري كلتشر™"
+      }
+    }
+  ]
+}
