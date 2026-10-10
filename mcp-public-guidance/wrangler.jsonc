@@ -1,0 +1,6 @@
+{
+  "name": "re-culture-public-guidance-mcp",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-10",
+  "observability": { "enabled": false }
+}

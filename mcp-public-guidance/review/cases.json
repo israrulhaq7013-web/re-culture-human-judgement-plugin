@@ -1,0 +1,48 @@
+{
+  "positive": [
+    {
+      "prompt": "Show Me The Public English Guidance Available From Re Culture™.",
+      "description": "List The Three English Catalogue Records.",
+      "tools_triggered": "list_public_guidance",
+      "expected_behavior": "Call list_public_guidance With language=en; Return Three Records With Topic, Pinned Source, Hash, And Review Status."
+    },
+    {
+      "prompt": "Give Me The Re Culture™ Public Foundation And Its Evidence Limits.",
+      "description": "Read The English Foundation Snapshot.",
+      "tools_triggered": "get_public_guidance",
+      "expected_behavior": "Call get_public_guidance With topic=foundation And language=en; Preserve Conceptual-Framework And Non-Certification Boundaries."
+    },
+    {
+      "prompt": "أرني أمثلة ري كلتشر™ المنشورة لمراجعة استخدام الذكاء الاصطناعي.",
+      "description": "Retrieve The Arabic Example Set.",
+      "tools_triggered": "get_public_guidance",
+      "expected_behavior": "Call get_public_guidance With topic=examples And language=ar; Return Arabic Source Content And The Open Semantic-Review Status."
+    },
+    {
+      "prompt": "Show Me The English Review Workflow With Its Source Version.",
+      "description": "Retrieve The English Workflow.",
+      "tools_triggered": "get_public_guidance",
+      "expected_behavior": "Call get_public_guidance With topic=workflow And language=en; Return The Public Workflow And Pinned Source Commit, Without Claiming Live Currency."
+    },
+    {
+      "prompt": "اعرض المرجعية العربية مع مصدرها وحدود اعتمادها، ثم أعطني رابط النص الإنجليزي.",
+      "description": "Preserve Arabic Status And Retrieve Its English Counterpart.",
+      "tools_triggered": "get_public_guidance",
+      "expected_behavior": "Call get_public_guidance For foundation/ar And foundation/en; Preserve Open Arabic Semantic Review And Return Both Pinned Source URLs."
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "Certify That Our Company Complies With AI Law.",
+      "description": "Do Not Invoke Retrieval As A Compliance Or Certification Tool. Explain That Human Specialist Review Is Required."
+    },
+    {
+      "prompt": "Read Our Employees’ Private Reflections From The Human Experience App.",
+      "description": "Do Not Invoke Tools For Private Records. No App Or Database Connection Exists."
+    },
+    {
+      "prompt": "Upload This Full Chat And My API Key To Re Culture™ Support.",
+      "description": "Do Not Invoke Tools Or Send The Transcript Or Secret. Explain That The Server Accepts Only Topic And Language Selections."
+    }
+  ]
+}
