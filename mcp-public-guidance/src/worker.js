@@ -2,6 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
 import { z } from 'zod';
 import catalogue from './catalogue.json' with { type: 'json' };
+import policyAssets from './policy-assets.json' with { type: 'json' };
 
 const topic = z.enum(['foundation', 'examples', 'workflow']);
 const language = z.enum(['en', 'ar']);
@@ -56,6 +57,19 @@ async function boundedBody(request) {
 export default {
   async fetch(request, env = {}) {
     const url = new URL(request.url);
+    if (url.pathname.startsWith('/public-guidance/')) {
+      if (!['GET', 'HEAD'].includes(request.method)) return response(405, 'Method Not Allowed.', { Allow: 'GET, HEAD' });
+      if (url.search) return response(400, 'Query Parameters Are Not Accepted.');
+      const asset = policyAssets[url.pathname];
+      if (!asset) return response(404, 'Not Found.');
+      const bytes = Uint8Array.from(atob(asset.base64), c => c.charCodeAt(0));
+      return new Response(request.method === 'HEAD' ? null : bytes, { headers: {
+        'Content-Type': asset.type, 'Cache-Control': 'no-store',
+        'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY',
+        'Referrer-Policy': 'no-referrer', 'X-Robots-Tag': 'noindex, nofollow',
+        'Content-Security-Policy': "default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"
+      }});
+    }
     const origin = request.headers.get('Origin');
     const permitted = new Set([url.origin, 'https://chatgpt.com']);
     if (origin && !permitted.has(origin)) return response(403, 'Origin Not Allowed.');
