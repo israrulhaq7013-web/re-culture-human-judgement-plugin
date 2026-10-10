@@ -27,7 +27,7 @@ jobs:
       - name: Check Out Reviewed MCP Source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: 15e5f5c5a24de8d1efac0da8543ebcfa8f300fa7
+          ref: 1d60224de6f6504f83c124548530763157873ff1
           persist-credentials: false
       - name: Set Up Node
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
