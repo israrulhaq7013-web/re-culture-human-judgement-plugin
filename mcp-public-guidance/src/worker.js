@@ -10,8 +10,8 @@ const annotations = { readOnlyHint: true, destructiveHint: false, idempotentHint
 const MAX_BYTES = 8192;
 
 function server() {
-  const mcp = new McpServer({ name: 're-culture-public-guidance', version: '0.1.0' }, {
-    instructions: 'Retrieve Only Public Guidance By Topic And Language. Never Send Conversation Text, Personal Records, Or Secrets. Results Are Versioned Source Snapshots, Not Live Verification Or Certification. Preserve Arabic Review Status. Human Judgement Remains With People.'
+  const mcp = new McpServer({ name: 're-culture-public-guidance', version: '0.1.1' }, {
+    instructions: 'Retrieve Only Public Guidance By Topic And Language. Never Send Conversation Text, Personal Records, Or Secrets. Results Are Versioned Source Snapshots, Not Live Verification Or Certification. Preserve Current Arabic Review Metadata. Historical Source Text Can Describe An Earlier Open Review; The Recorded Founder Review Covers Plugin Guidance Only, Not Independent Review Or Full Framework Translation Approval. Human Judgement Remains With People.'
   });
   mcp.registerTool('list_public_guidance', {
     title: 'List Public Guidance', description: 'List Available Re Culture™ Public Guidance For A Selected Language. Accepts Only en Or ar; Do Not Send Review Scenarios.',
@@ -73,7 +73,7 @@ export default {
     const origin = request.headers.get('Origin');
     const permitted = new Set([url.origin, 'https://chatgpt.com']);
     if (origin && !permitted.has(origin)) return response(403, 'Origin Not Allowed.');
-    if (url.pathname === '/health' && request.method === 'GET') return response(200, 'Re Culture™ Public Guidance 0.1.0');
+    if (url.pathname === '/health' && request.method === 'GET') return response(200, 'Re Culture™ Public Guidance 0.1.1');
     if (url.pathname !== '/mcp') return response(404, 'Not Found.');
     if (url.search) return response(400, 'Query Parameters Are Not Accepted.');
     if (request.method !== 'POST') return response(405, 'Method Not Allowed.', { Allow: 'POST' });
@@ -116,3 +116,4 @@ export default {
     } finally { await mcp.close(); }
   }
 };
+

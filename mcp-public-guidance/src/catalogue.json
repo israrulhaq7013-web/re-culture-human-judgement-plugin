@@ -18,8 +18,15 @@
     "source_url": "https://github.com/israrulhaq7013-web/re-culture-human-judgement-plugin/blob/50e0a4eb9a79a3cb1ce43e43b2b29242d5e18f9b/plugins/re-culture-human-judgement/skills/human-judgement-review/references/arabic-public-doctrine.md",
     "source_commit": "50e0a4eb9a79a3cb1ce43e43b2b29242d5e18f9b",
     "content_sha256": "2f2fde028270cbddf97178a81c44ae6a32abd66ea98335b370aa07e8771851b5",
-    "review_status": "لقطة من مصدر الإضافة العامة؛ لم يتم التحقق من حداثة النشر المباشر.",
-    "arabic_semantic_review": "open"
+    "review_status": "لقطة من مصدر الإضافة العامة؛ لم يتم التحقق من حداثة النشر المباشر. أتم مظهر الحق مراجعة المؤسس لإرشادات الإضافة العربية في ١١ أكتوبر ٢٠٢٦. تشير عبارات المراجعة المفتوحة داخل النص إلى لقطة المصدر التاريخية أو مراجعة النص الدستوري الكامل، ولا تلغي مراجعة هذه الإرشادات. لا يثبت ذلك مراجعة مستقلة أو اعتماد ترجمة الإطار الكاملة.",
+    "arabic_semantic_review": "founder_review_completed",
+    "arabic_review": {
+      "reviewer": "Mazhar Ul Haq",
+      "review_type": "Founder Arabic Review",
+      "confirmed_at": "2026-10-11T06:09:16+03:00",
+      "reviewed_content_sha256": "2f2fde028270cbddf97178a81c44ae6a32abd66ea98335b370aa07e8771851b5",
+      "scope": "Plugin Arabic Guidance; Not Independent Review Or Full Constitutional Framework Translation Approval."
+    }
   },
   {
     "id": "examples-en",
@@ -40,8 +47,15 @@
     "source_url": "https://github.com/israrulhaq7013-web/re-culture-human-judgement-plugin/blob/50e0a4eb9a79a3cb1ce43e43b2b29242d5e18f9b/plugins/re-culture-human-judgement/skills/human-judgement-review/references/arabic-examples.md",
     "source_commit": "50e0a4eb9a79a3cb1ce43e43b2b29242d5e18f9b",
     "content_sha256": "ebc91b63d073dd7679e983e9a817cf64f7544ecd6b53ca8d678feecb2323201d",
-    "review_status": "لقطة من مصدر الإضافة العامة؛ لم يتم التحقق من حداثة النشر المباشر.",
-    "arabic_semantic_review": "open"
+    "review_status": "لقطة من مصدر الإضافة العامة؛ لم يتم التحقق من حداثة النشر المباشر. أتم مظهر الحق مراجعة المؤسس لإرشادات الإضافة العربية في ١١ أكتوبر ٢٠٢٦. تشير عبارات المراجعة المفتوحة داخل النص إلى لقطة المصدر التاريخية أو مراجعة النص الدستوري الكامل، ولا تلغي مراجعة هذه الإرشادات. لا يثبت ذلك مراجعة مستقلة أو اعتماد ترجمة الإطار الكاملة.",
+    "arabic_semantic_review": "founder_review_completed",
+    "arabic_review": {
+      "reviewer": "Mazhar Ul Haq",
+      "review_type": "Founder Arabic Review",
+      "confirmed_at": "2026-10-11T06:09:16+03:00",
+      "reviewed_content_sha256": "ebc91b63d073dd7679e983e9a817cf64f7544ecd6b53ca8d678feecb2323201d",
+      "scope": "Plugin Arabic Guidance; Not Independent Review Or Full Constitutional Framework Translation Approval."
+    }
   },
   {
     "id": "workflow-en",
@@ -62,7 +76,14 @@
     "source_url": "https://github.com/israrulhaq7013-web/re-culture-human-judgement-plugin/blob/50e0a4eb9a79a3cb1ce43e43b2b29242d5e18f9b/plugins/re-culture-human-judgement/skills/human-judgement-review/references/arabic-workflow.md",
     "source_commit": "50e0a4eb9a79a3cb1ce43e43b2b29242d5e18f9b",
     "content_sha256": "95bcaae8ce4a0201deb7e12ebbde88d843063541a0ae925c2e16f1f725a7dbba",
-    "review_status": "لقطة من مصدر الإضافة العامة؛ لم يتم التحقق من حداثة النشر المباشر.",
-    "arabic_semantic_review": "open"
+    "review_status": "لقطة من مصدر الإضافة العامة؛ لم يتم التحقق من حداثة النشر المباشر. أتم مظهر الحق مراجعة المؤسس لإرشادات الإضافة العربية في ١١ أكتوبر ٢٠٢٦. تشير عبارات المراجعة المفتوحة داخل النص إلى لقطة المصدر التاريخية أو مراجعة النص الدستوري الكامل، ولا تلغي مراجعة هذه الإرشادات. لا يثبت ذلك مراجعة مستقلة أو اعتماد ترجمة الإطار الكاملة.",
+    "arabic_semantic_review": "founder_review_completed",
+    "arabic_review": {
+      "reviewer": "Mazhar Ul Haq",
+      "review_type": "Founder Arabic Review",
+      "confirmed_at": "2026-10-11T06:09:16+03:00",
+      "reviewed_content_sha256": "95bcaae8ce4a0201deb7e12ebbde88d843063541a0ae925c2e16f1f725a7dbba",
+      "scope": "Plugin Arabic Guidance; Not Independent Review Or Full Constitutional Framework Translation Approval."
+    }
   }
 ]

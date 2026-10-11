@@ -31,7 +31,7 @@ test('Official MCP Client Initializes And Reads All Six Bilingual Records', asyn
       assert.equal(result.structuredContent.topic, topic);
       assert.match(result.structuredContent.source_url, /^https:\/\/github\.com\//);
       assert.equal(result.structuredContent.content_sha256.length, 64);
-      if (language === 'ar') assert.equal(result.structuredContent.arabic_semantic_review, 'open');
+      if (language === 'ar') assert.equal(result.structuredContent.arabic_semantic_review, 'founder_review_completed');
     }
   }
   await client.close();
@@ -84,3 +84,4 @@ test('Independent Calls Do Not Retain Scenario State Or Sessions', async () => {
   assert.equal(first.headers.get('Mcp-Session-Id'), null);
   assert.equal(await first.text(), await second.text());
 });
+
