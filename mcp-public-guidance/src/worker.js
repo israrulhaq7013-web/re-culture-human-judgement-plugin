@@ -57,6 +57,11 @@ async function boundedBody(request) {
 export default {
   async fetch(request, env = {}) {
     const url = new URL(request.url);
+    if (url.pathname === '/.well-known/openai-apps-challenge') {
+      if (!['GET', 'HEAD'].includes(request.method)) return response(405, 'Method Not Allowed.', { Allow: 'GET, HEAD' });
+      if (url.search) return response(400, 'Query Parameters Are Not Accepted.');
+      return response(200, request.method === 'HEAD' ? null : 'yrQXOeLX8IGG7NXviyM2QNE2blh-xHGX_Jvnsom1klQ', { 'X-Robots-Tag': 'noindex, nofollow' });
+    }
     if (url.pathname.startsWith('/public-guidance/')) {
       if (!['GET', 'HEAD'].includes(request.method)) return response(405, 'Method Not Allowed.', { Allow: 'GET, HEAD' });
       if (url.search) return response(400, 'Query Parameters Are Not Accepted.');
