@@ -2,6 +2,9 @@ name: Preview Re Culture Approved Pages
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/preview-approved-pages-1.yml']
 
 permissions:
   contents: read
@@ -57,6 +60,31 @@ jobs:
         run: npm test
       - name: Build The Prepared Source
         run: npm run build
+      - name: Enable The Existing Preview URL Without Deploying Production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.RE_CULTURE_MCP_CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.RE_CULTURE_MCP_CF_ACCOUNT_ID }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFileSync} from "node:fs";
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID, token=process.env.CLOUDFLARE_API_TOKEN;
+          if(!/^[a-f0-9]{32}$/i.test(account||"") || !token) throw new Error("Existing Cloudflare credentials unavailable");
+          const base="https://api.cloudflare.com/client/v4/accounts/"+account+"/workers/scripts/re-culture-public-guidance-mcp";
+          async function api(path, method="GET", body) {
+            const r=await fetch(base+path,{method,headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
+            const j=await r.json();
+            if(!r.ok || !j.success) throw new Error("Cloudflare request failed: "+method+" "+path+" HTTP "+r.status);
+            return j.result;
+          }
+          const deployment=await api("/deployments");
+          writeFileSync("production-before.json",JSON.stringify(deployment));
+          const current=await api("/subdomain");
+          if(typeof current.enabled!=="boolean" || typeof current.previews_enabled!=="boolean") throw new Error("Unexpected routing response");
+          if(!current.previews_enabled) await api("/subdomain","POST",{enabled:current.enabled,previews_enabled:true});
+          const verified=await api("/subdomain");
+          if(verified.enabled!==current.enabled || verified.previews_enabled!==true) throw new Error("Preview routing verification failed");
+          console.log("Preview URLs enabled; production workers.dev routing preserved.");
+          NODE
       - name: Upload An Isolated Preview Only
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.RE_CULTURE_MCP_CF_API_TOKEN }}
@@ -66,3 +94,38 @@ jobs:
           test -n "$CLOUDFLARE_API_TOKEN"
           test -n "$CLOUDFLARE_ACCOUNT_ID"
           npx --no-install wrangler preview --config wrangler.preview.json --name reculture-pages-014 --worker-name re-culture-public-guidance-mcp --ignore-base-config --message "Founder Approved Page Additions; Preview Verification Pending"
+      - name: Verify All Eight Preview Pages And Preserve Production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.RE_CULTURE_MCP_CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.RE_CULTURE_MCP_CF_ACCOUNT_ID }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFileSync,writeFileSync} from "node:fs";
+          import {createHash} from "node:crypto";
+          const root="https://reculture-pages-014-re-culture-public-guidance-mcp.reculture-independent.workers.dev";
+          const assets=JSON.parse(readFileSync("src/policy-assets.json","utf8"));
+          const results=[];
+          for(const page of ["overview","privacy","terms","support"]) for(const lang of ["en","ar"]) {
+            const path="/public-guidance/"+page+"."+lang+".html";
+            const expected=assets[path];
+            let response, bytes;
+            for(let attempt=0;attempt<6;attempt++) {
+              response=await fetch(root+path,{signal:AbortSignal.timeout(20000)});
+              bytes=Buffer.from(await response.arrayBuffer());
+              if(response.status===200) break;
+              await new Promise(resolve=>setTimeout(resolve,5000));
+            }
+            const hash=createHash("sha256").update(bytes).digest("hex");
+            if(response.status!==200 || hash!==expected.sha256) throw new Error("Preview page mismatch: "+path+" HTTP "+response.status);
+            if(!response.headers.get("content-type")?.includes("text/html") || !response.headers.get("x-robots-tag")?.includes("noindex")) throw new Error("Preview page headers mismatch: "+path);
+            results.push({path,status:response.status,sha256:hash});
+            console.log("Verified HTTP 200 and approved bytes: "+path);
+          }
+          const api="https://api.cloudflare.com/client/v4/accounts/"+process.env.CLOUDFLARE_ACCOUNT_ID+"/workers/scripts/re-culture-public-guidance-mcp/deployments";
+          const r=await fetch(api,{headers:{Authorization:"Bearer "+process.env.CLOUDFLARE_API_TOKEN}});
+          const j=await r.json();
+          if(!r.ok || !j.success) throw new Error("Production verification unavailable");
+          if(JSON.stringify(j.result)!==readFileSync("production-before.json","utf8")) throw new Error("Production deployment changed during preview");
+          writeFileSync("preview-verification.json",JSON.stringify({root,results,productionPreserved:true},null,2));
+          console.log("Production deployment preserved; eight approved pages served.");
+          NODE
