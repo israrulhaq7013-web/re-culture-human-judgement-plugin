@@ -2,9 +2,6 @@ name: Publish Founder Approved Public Guidance Pages
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/publish-approved-pages.yml']
 
 permissions:
   contents: read
