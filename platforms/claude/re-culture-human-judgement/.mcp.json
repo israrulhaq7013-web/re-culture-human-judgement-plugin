@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "re-culture-public-guidance": {
+      "type": "http",
+      "url": "https://re-culture-public-guidance-mcp.reculture-independent.workers.dev/mcp"
+    }
+  }
+}
