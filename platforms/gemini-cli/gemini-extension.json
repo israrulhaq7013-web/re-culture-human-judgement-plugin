@@ -1,0 +1,15 @@
+{
+  "name": "re-culture-human-judgement",
+  "version": "0.1.0",
+  "description": "Re Culture™ Human Judgement Reviews In English And Arabic, With Public Guidance, Evidence Limits And Human Decision Responsibility.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "re-culture-public-guidance": {
+      "httpUrl": "https://re-culture-public-guidance-mcp.reculture-independent.workers.dev/mcp",
+      "includeTools": [
+        "list_public_guidance",
+        "get_public_guidance"
+      ]
+    }
+  }
+}
